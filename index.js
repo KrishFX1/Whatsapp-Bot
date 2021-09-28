@@ -12,20 +12,20 @@ var discordToken = process.env.discordToken
 var telegramToken = process.env.telegramToken
 let whatsappSession = JSON.parse(process.env.WW_SESSION);
 
-botTele = new TelegramBot(token, { polling: true }); //Start the Telegram Bot
+tBot = new TelegramBot(telegramToken, { polling: true }); //Start the Telegram Bot
 
-var bot = new discordClient({
+var dBot = new discordClient({
     intents: [
-        //Insert Intents that you want your bot to catch.
+        //Insert Intents that you want your dBot to catch.
     ]
 })
 
 
-bot.on("ready", () => { // When the bot is ready
+dBot.on("ready", () => { // When the dBot is ready
     console.log("Ready!"); // Log "Ready!"
 });
 
-bot.on("error", (err) => {
+dBot.on("error", (err) => {
     console.log(err);
 });
 
@@ -71,7 +71,7 @@ client.on('message_create', async message => {
 });
 
 
-bot.on("messageCreate", async (msg) => {
+dBot.on("messageCreate", async (msg) => {
   console.log(msg) //Get all
     if (msg.content == "/ping") {
         msg.reply('Pong')
@@ -79,14 +79,13 @@ bot.on("messageCreate", async (msg) => {
 });
 
 
-botTele.on('message', async (msg) => {
+tBot.on('message', async (msg) => {
     const chatId = msg.chat.id;
     if (msg.text == "/ping") {
-        await botTele.sendMessage(chatId, 'Pong')
+        await tBot.sendMessage(chatId, 'Pong')
     }
 });
 
 
 client.initialize()
-bot.login(discordToken)
-
+dBot.login(discordToken)
