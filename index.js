@@ -4,7 +4,6 @@ const qrcode = require('qrcode-terminal')
 
 const discord = require('discord.js')
 const whatsapp = require('whatsapp-web.js')
-const { MessageAttachment } = require('discord.js')
 
 const discordClient = discord.Client
 const whatsappClient = whatsapp.Client
